@@ -35,6 +35,7 @@ export default defineComponent({
   },
   methods: {
     submit() {
+      console.log(process.env.BACKEND_URL);
       if(!this.$refs.form.validate()) 
         return
       

@@ -17,19 +17,13 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: 'App',
 
   data: () => ({
-    //
+    
   }),
-  beforeMount() {
-
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer :12121" ;
-  },
-  
+ 
 
 }
 </script>

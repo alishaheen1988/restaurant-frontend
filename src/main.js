@@ -4,7 +4,7 @@ import router from './router'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 import axios from "axios";
-
+import { createPinia } from 'pinia';
 loadFonts()
 axios.interceptors.response.use(
   (response) => response,
@@ -20,4 +20,5 @@ axios.interceptors.response.use(
 createApp(App)
   .use(router)
   .use(vuetify)
+  .use(createPinia())
   .mount('#app')
