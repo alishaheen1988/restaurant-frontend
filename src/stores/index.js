@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
+import axios from "axios";
 
 export const useMainStore = defineStore('mainStore', {
     state: () => ({
+        root_url:process.env.VUE_APP_BACKEND_URL,
         token: localStorage.getItem("access_token") || null,
         user_name: localStorage.getItem("user_name") || "",
     }),

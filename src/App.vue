@@ -1,15 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar :color="'indigo'" dark>
-
-      <v-toolbar-title>My Restaurant</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <!-- <v-btn icon>
-        <v-icon>mdi-export</v-icon>
-      </v-btn> -->
-    </v-toolbar>
+   <toolbar></toolbar>
     <v-main>
       <router-view />
     </v-main>
@@ -17,9 +8,12 @@
 </template>
 
 <script>
+import Toolbar from '@/views/Toolbar.vue' 
 export default {
   name: 'App',
-
+  components: {
+    Toolbar
+  },
   data: () => ({
     
   }),
