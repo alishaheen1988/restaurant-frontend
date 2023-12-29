@@ -6,9 +6,10 @@ import { useMainStore } from '@/stores'
 
 const routes = [
   {
-    path: '/',
+    path: '/:id?',
     name: 'home',
     component: Home,
+    props:true,
     meta: { requiresAuth: true }
   },
   {

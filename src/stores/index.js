@@ -6,7 +6,7 @@ export const useMainStore = defineStore('mainStore', {
         root_url: process.env.VUE_APP_BACKEND_URL,
         token: localStorage.getItem("access_token") || null,
         user_name: localStorage.getItem("user_name") || "",
-        restaurant_menu: null
+        restaurant_menu: []
     }),
     getters: {
         loggedIn() {
