@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-breadcrumbs :items="breadcrumb">
+      <template v-slot:prepend>
+        <v-icon size="small" icon="$vuetify"></v-icon>
+      </template>
+    </v-breadcrumbs>
     <h2>{{ currentCategory?.name }}</h2>
     <div v-if="!!this.id" class="my-5 mx-5">
       <v-row class="mt-5 mx-5" justify="start">
@@ -22,7 +27,7 @@
               <span>Show Details</span>
               <v-icon right>mdi-view-dashboard</v-icon>
             </v-btn>
-            <DeletePopup  v-if="!!this.id"  type="categories" :id="cat.id" :name="cat.name"/>
+            <DeletePopup v-if="!!this.id" type="categories" :id="cat.id" :name="cat.name" />
           </v-card-actions>
         </v-card>
       </v-col>
@@ -51,15 +56,16 @@ import DeletePopup from '@/components/DeletePopup.vue'
 export default defineComponent({
   name: 'Home',
   props: ['id'],
-  components: { AddCategoryPopup, AddItemPopup,DeletePopup },
+  components: { AddCategoryPopup, AddItemPopup, DeletePopup },
   data() {
     return {
       mainStore: useMainStore(),
+      
     }
   },
   computed: {
     currentCategory() {
-      return  this.id ? this.mainStore.restaurant_menu.find((a) => (a.id == this.id)):null;
+      return this.id ? this.mainStore.restaurant_menu.find((a) => (a.id == this.id)) : null;
     },
     subCategories() {
 
@@ -67,6 +73,38 @@ export default defineComponent({
     },
     items() {
       return this.currentCategory ? JSON.parse(this.currentCategory.cat_items || []) : []
+    },
+    breadcrumb(){
+      if (this.currentCategory) {
+        let bc = [
+          {
+            title: this.currentCategory.name,
+            disabled: true,
+            to: this.id+"",
+          }
+        ]
+        let iterator = this.currentCategory;
+        while (iterator.parent_id) {
+          iterator = this.mainStore.restaurant_menu.find((a) => a.id == iterator.parent_id);
+          bc = [
+            {
+              title: iterator.name,
+              disabled: false,
+              to: iterator.id+""
+            }
+          ].concat(bc);
+
+        }
+        bc=[
+            {
+              title: 'My Menu',
+              disabled: false,
+              to: "/"
+            }
+          ].concat(bc);
+        return bc;
+      }
+      else return [];
     }
   },
   mounted() {
