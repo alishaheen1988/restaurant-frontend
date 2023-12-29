@@ -6,7 +6,7 @@
         <v-text-field variant="underlined" v-model="email" label="Email"
           :rules="[rules.required, rules.email]"></v-text-field>
 
-        <v-text-field variant="underlined" v-model="password" label="password"
+        <v-text-field variant="underlined" v-model="password" label="password" type="password"
           :rules="[rules.required, rules.password]"></v-text-field>
 
         <v-btn type="submit" color="primary" block class="mt-2">Sign in</v-btn>
