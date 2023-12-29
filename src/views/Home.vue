@@ -27,6 +27,7 @@
               <span>Show Details</span>
               <v-icon right>mdi-view-dashboard</v-icon>
             </v-btn>
+            <EditCategoryPopup :id="cat.id" :name="cat.name" :description="cat.description" :discount_percentage="cat.discount_percentage" />
             <DeletePopup v-if="!!this.id" type="categories" :id="cat.id" :name="cat.name" />
           </v-card-actions>
         </v-card>
@@ -39,6 +40,7 @@
           <v-card-text>{{ item.description }}</v-card-text>
           <v-card-text>Price: {{ item.price }}</v-card-text>
           <v-card-actions>
+            <EditItemPopup :id="item.id" :name="item.name" :description="item.description" :discount_percentage="item.discount_percentage" :price="item.price" />
             <DeletePopup type="items" :id="item.id" :name="item.name" />
           </v-card-actions>
         </v-card>
@@ -51,12 +53,14 @@
 import { defineComponent } from 'vue';
 import { useMainStore } from '@/stores'
 import AddCategoryPopup from '@/components/AddCategoryPopup.vue'
+import EditCategoryPopup from '@/components/EditCategoryPopup.vue'
 import AddItemPopup from '@/components/AddItemPopup.vue'
+import EditItemPopup from '@/components/EditItemPopup.vue'
 import DeletePopup from '@/components/DeletePopup.vue'
 export default defineComponent({
   name: 'Home',
   props: ['id'],
-  components: { AddCategoryPopup, AddItemPopup, DeletePopup },
+  components: { AddCategoryPopup, AddItemPopup, DeletePopup, EditCategoryPopup, EditItemPopup },
   data() {
     return {
       mainStore: useMainStore(),
