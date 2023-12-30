@@ -10,3 +10,4 @@ These are the commands you should execute one by one to run the project:
 - cd .\restaurant-frontend\
 - npm install
 - copy the .env.example to .env file and set the backend url
+- npm run serve
